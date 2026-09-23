@@ -35,7 +35,7 @@ Editables en `index.html`, bloque `CONFIG` (negocio, dominio, cifras, palabras c
 
 ## Pendiente
 
-- Dirección postal de Fast Horizons SL en `aviso-legal.html` y `privacidad.html` (buscar `[DIRECCIÓN POSTAL PENDIENTE]`).
+- ID del píxel de Meta en `consent.js`.
 
 ## Deploy
 
