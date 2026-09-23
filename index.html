@@ -98,6 +98,7 @@ body.embed #ir-formulario, body.render #ir-formulario { display: none; }
       <input type="hidden" name="utm_term" value="">
       <input type="hidden" name="fbclid" value="">
       <input type="hidden" name="pagina_origen" value="">
+      <input type="hidden" name="landing" value="index">
 
       <div class="campo">
         <label for="negocio">Nombre del negocio <span class="req">*</span></label>
@@ -771,6 +772,52 @@ const CONFIG = {
   ctaUrl: 'https://loocaal.com/#formulario',   // adónde lleva el clic en la versión HTML
 };
 
+/* ---- variantes por sector y ciudad (se eligen por URL: /?embed&sector=dentistas&ciudad=Sevilla) ----
+   Cada sector cambia el rótulo de la tienda, la búsqueda tecleada, las palabras clave y la pregunta a la IA.
+   Si hay ciudad, todas las búsquedas la usan; si no, se reparten entre varias ciudades. */
+const PRESETS = {
+  fontaneros:   { business: 'TU EMPRESA',  query: 'fontanero urgente {c}',   aiQuestion: '¿Qué fontanero me recomiendas en {C}?',
+                  keywords: [['fontanero urgente {c}', 2900], ['electricista {c}', 2400], ['aire acondicionado {c}', 1900], ['desatascos {c}', 1600], ['calderas {c}', 880]] },
+  reformas:     { business: 'TU EMPRESA',  query: 'reformas de baño {c}',     aiQuestion: '¿Qué empresa de reformas me recomiendas en {C}?',
+                  keywords: [['reformas de baño {c}', 2900], ['reformas integrales {c}', 2400], ['reformas cocina {c}', 1900], ['empresa reformas {c}', 1600], ['albañiles {c}', 880]] },
+  limpieza:     { business: 'TU EMPRESA',  query: 'limpieza oficinas {c}', aiQuestion: '¿Qué empresa de limpieza me recomiendas en {C}?',
+                  keywords: [['limpieza oficinas {c}', 2900], ['empresa de limpieza {c}', 2400], ['limpieza portales {c}', 1900], ['limpieza de obra {c}', 1600], ['limpieza hogar {c}', 880]] },
+  dentistas:    { business: 'TU CLÍNICA',  query: 'dentista en {c}',          aiQuestion: '¿Qué dentista me recomiendas en {C}?',
+                  keywords: [['dentista en {c}', 2900], ['implantes dentales {c}', 2400], ['ortodoncia {c}', 1900], ['clínica dental {c}', 1600], ['blanqueamiento {c}', 880]] },
+  abogados:     { business: 'TU DESPACHO', query: 'abogado laboral {c}',      aiQuestion: '¿Qué abogado me recomiendas en {C}?',
+                  keywords: [['abogado laboral {c}', 2900], ['abogado divorcios {c}', 2400], ['gestoría {c}', 1900], ['abogado herencias {c}', 1600], ['asesoría fiscal {c}', 880]] },
+  estetica:     { business: 'TU CENTRO',   query: 'peluquería en {c}',        aiQuestion: '¿Qué centro de estética me recomiendas en {C}?',
+                  keywords: [['peluquería en {c}', 2900], ['centro de estética {c}', 2400], ['depilación láser {c}', 1900], ['manicura {c}', 1600], ['barbería {c}', 880]] },
+  restaurantes: { business: 'TU LOCAL',    query: 'restaurante en {c}',       aiQuestion: '¿Qué restaurante me recomiendas en {C}?',
+                  keywords: [['restaurante en {c}', 2900], ['dónde comer en {c}', 2400], ['arrocería {c}', 1900], ['cenar en {c}', 1600], ['brunch {c}', 880]] },
+  inmobiliarias:{ business: 'TU AGENCIA',  query: 'inmobiliaria en {c}',      aiQuestion: '¿Qué inmobiliaria me recomiendas en {C}?',
+                  keywords: [['inmobiliaria en {c}', 2900], ['vender piso {c}', 2400], ['alquiler pisos {c}', 1900], ['tasación vivienda {c}', 1600], ['agente inmobiliario {c}', 880]] },
+  talleres:     { business: 'TU TALLER',   query: 'taller mecánico {c}',      aiQuestion: '¿Qué taller mecánico me recomiendas en {C}?',
+                  keywords: [['taller mecánico {c}', 2900], ['neumáticos {c}', 2400], ['chapa y pintura {c}', 1900], ['revisión coche {c}', 1600], ['taller diésel {c}', 880]] },
+};
+(function applyPreset() {
+  const q = new URLSearchParams(location.search), sector = (q.get('sector') || '').toLowerCase(), ciudad = (q.get('ciudad') || '').trim();
+  const preset = PRESETS[sector]; if (!preset && !ciudad) return;
+  const CITIES = ['valencia', 'madrid', 'barcelona', 'sevilla', 'bilbao'];
+  const cap = t => t.replace(/(^|\s)\S/g, m => m.toUpperCase());
+  const city = (i) => (ciudad || CITIES[i % CITIES.length]).toLowerCase(), City = ciudad ? cap(ciudad) : 'mi ciudad';
+  const fill = (t, i) => t.replace(/\{c\}/g, city(i)).replace(/\{C\}/g, City);
+  if (preset) {
+    CONFIG.business = preset.business;
+    CONFIG.query = fill(preset.query, 0);
+    CONFIG.aiQuestion = fill(preset.aiQuestion, 0);
+    CONFIG.keywords = preset.keywords.map(([kw, vol], i) => [fill(kw, i), vol, i !== 1 && i !== 4]);
+  } else {
+    // solo ciudad: se mantienen los sectores de ejemplo, pero todos en esa ciudad
+    CONFIG.query = 'servicio + ' + city(0);
+    CONFIG.aiQuestion = fill('¿Qué empresa me recomiendas en {C}?', 0);
+    CONFIG.keywords = CONFIG.keywords.map(([kw, vol, pick]) => [kw.replace(/\s+\S+$/, ' ' + city(0)), vol, pick]);
+  }
+})();
+
+/* nombre del negocio en formato título (TU CLÍNICA → Tu Clínica) para los textos de las escenas */
+const BIZ = () => CONFIG.business.toLowerCase().replace(/(^|\s)\S/g, m => m.toUpperCase());
+
 /* ================= BEAT SHEET =================
  start  dur   escena        qué cambia                                                     sonido
  0.00   2.50  establish     tienda vacía, matojo, "cri, cri" (push-in 1.2→1)               grillos, viento
@@ -1018,7 +1065,7 @@ function sGBP(c, lt, d) {
     const ph = [rectP(X + 22, Y + 22, 176, 120), rectP(X + 208, Y + 22, 176, 120), rectP(X + 394, Y + 22, 174, 120)];
     ph.forEach((r, k) => { if (k === 0) { knock(c, r, PAL.greenLt); } shape(c, r, { hatch: { gap: 8, angle: .6 + k * .5, seed: 481 + k, alpha: k === 0 ? 0 : .45 }, seed: 484 + k, line: { w: 2.6 } }); });
     shop(c, X + 110, Y + 138, .27, { sign: '', open: false });
-    htext(c, 'Tu Negocio', X + 26, Y + 210, { size: 54, seed: 487 });
+    htext(c, BIZ(), X + 26, Y + 210, { size: 54, seed: 487 });
     for (let k = 0; k < 5; k++) starIcon(c, X + 48 + k * 48, Y + 256, 19, lt > 1.55 + k * .09, 490 + k);
     htext(c, '4,9', X + 290, Y + 272, { size: 40, seed: 496 });
     const n = Math.round(127 * easeOut(seg(lt, 1.55, 2.6)));
@@ -1047,7 +1094,7 @@ function sDirs(c, lt, d) {
     const b = rrP(-190, -105, 380, 210, 20);
     fillP(c, b, PAL.paper, 8, 8); knock(c, b, PAL.paperLt); ink(c, b, { close: true, w: 5, seed: 520 });
     pin(c, -128, 38, .72, { green: true, shadow: false });
-    htext(c, 'Tu Negocio', -70, -38, { size: 44, seed: 521 });
+    htext(c, BIZ(), -70, -38, { size: 44, seed: 521 });
     htext(c, 'Calle Mayor, 1', -70, 12, { size: 36, font: 'CV', weight: '700', seed: 522 });
     htext(c, '600 000 000', -70, 58, { size: 36, font: 'CV', weight: '700', seed: 523 });
   });
@@ -1079,7 +1126,7 @@ function dirCard(c, x, y, kind, seed) {
   else for (let k = 0; k < 6; k++) ink(c, ellP(X + 24 + k * 16, Y + 23, 4, 4, 8), { close: true, w: 2, seed: seed + 20 + k });
   ink(c, bar, { close: true, w: 2.2, seed: seed + 2 });
   pin(c, X + 32, Y + 110, .4, { green: true, shadow: false });
-  htext(c, 'Tu Negocio', X + 60, Y + 72, { size: 28, font: 'GH', seed: seed + 3 });
+  htext(c, BIZ(), X + 60, Y + 72, { size: 28, font: 'GH', seed: seed + 3 });
   squiggle(c, X + 60, X + 200, Y + 94, seed + 4, { w: 2, amp: 2 });
   for (let k = 0; k < 5; k++) starIcon(c, X + 72 + k * 24, Y + 118, 9, k < 4 + (kind % 2), seed + 5 + k);
 }
@@ -1212,7 +1259,7 @@ function sTime(c, lt, d) {
     ink(c, card, { close: true, w: 4.4, color: PAL.green, seed: 1041 });
     pin(c, PX + 70, oy + 92, .5, { green: true, shadow: false });
     htext(c, CONFIG.domain, PX + 110, oy + 26, { size: 26, font: 'GH', color: PAL.greenDk, seed: 1042 });
-    htext(c, 'Tu Negocio · tu servicio en tu ciudad', PX + 110, oy + 66, { size: 38, font: 'GH', seed: 1043 });
+    htext(c, BIZ() + ' · ' + CONFIG.query, PX + 110, oy + 66, { size: 38, font: 'GH', seed: 1043 });
     squiggle(c, PX + 110, PX + 700, oy + 92, 1044, { w: 1.8, amp: 2, color: PAL.graphite });
   }
   c.restore();
@@ -1435,7 +1482,7 @@ function aiSide(c, x, y, k, lt, t0) {
     htext(c, k === 0 ? 'Chat de IA' : 'Búsqueda con IA', X + 110, Y + 46, { size: 34, font: 'GH', seed: 1767 + k });
     const hp = seg(lt, t0 + .25, t0 + .45);
     if (hp > 0) scrib(c, rectP(X + 26, Y + 92, 330, 54), { gap: 9, seed: 1770 + k, alpha: .5, w: 13, p: hp, angle: -1.35 });
-    htext(c, '1. Tu Negocio', X + 40, Y + 134, { size: 44, seed: 1772 + k });
+    htext(c, '1. ' + BIZ(), X + 40, Y + 134, { size: 44, seed: 1772 + k });
     if (lt > t0 + .4) tick(c, X + 410, Y + 118, 1, PAL.green, seg(lt, t0 + .4, t0 + .55), 1774 + k);
     htext(c, '2.', X + 40, Y + 196, { size: 32, color: PAL.graphite, seed: 1776 + k }); squiggle(c, X + 84, X + 330, Y + 188, 1778 + k, { w: 2.4, amp: 2, color: PAL.graphite });
     htext(c, '3.', X + 40, Y + 250, { size: 32, color: PAL.graphite, seed: 1780 + k }); squiggle(c, X + 84, X + 280, Y + 242, 1782 + k, { w: 2.4, amp: 2, color: PAL.graphite });
@@ -1463,7 +1510,7 @@ function sGEO(c, lt, d) {
     if (hp > 0) {
       scrib(c, rectP(X + 128, Y + 316, 420, 76), { gap: 10, seed: 1713, alpha: .5, w: 15, p: hp, angle: -1.35 });
       pin(c, X + 170, Y + 384, .52, { green: true, shadow: false });
-      htext(c, 'Tu Negocio', X + 208, Y + 372, { size: 60, seed: 1714 });
+      htext(c, BIZ(), X + 208, Y + 372, { size: 60, seed: 1714 });
     }
     if (lt > 1.55) {
       for (let k = 0; k < 5; k++) starIcon(c, X + 150 + k * 40, Y + 438, 15, true, 1715 + k);
@@ -1740,7 +1787,14 @@ if (MODE !== 'render') {
   bPlay.onclick = () => { if (playing) { offset = now(); playing = false; stopAudio(); } else { playing = true; t0 = performance.now(); startAudio(); } bPlay.textContent = playing ? 'Pausa' : 'Play'; };
   bSnd.onclick = () => { sound = !sound; bSnd.textContent = sound ? 'Sonido: sí' : 'Sonido: no'; sound ? startAudio() : stopAudio(); };
   scrub.oninput = () => { seek(+scrub.value / DFPS); };
-  cv.addEventListener('click', () => { if (!CONFIG.ctaUrl || sceneAt(now() % TOTAL) !== 'end') return; const f = document.getElementById('formulario'); if (f && MODE === 'play') f.scrollIntoView(); else window.open(CONFIG.ctaUrl, '_top'); });
+  cv.addEventListener('click', () => {
+    if (!CONFIG.ctaUrl || sceneAt(now() % TOTAL) !== 'end') return;
+    const f = document.getElementById('formulario');
+    if (f && MODE === 'play') { f.scrollIntoView(); return; }
+    // incrustado en una landing: avisa a la página que lo contiene para que baje a su propio formulario
+    if (window.parent !== window) { try { window.parent.postMessage({ type: 'loocaal:cta' }, location.origin); return; } catch (e) {} }
+    window.open(CONFIG.ctaUrl, '_top');
+  });
   cv.addEventListener('pointermove', () => { cv.style.cursor = CONFIG.ctaUrl && sceneAt(now() % TOTAL) === 'end' ? 'pointer' : ''; });
   window.addEventListener('keydown', e => { if (e.code === 'Space') { e.preventDefault(); bPlay.click(); } });
   window.addEventListener('resize', () => { last = -1; });

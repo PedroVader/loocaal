@@ -12,3 +12,22 @@
   from = "/empieza"
   to = "/empieza.html"
   status = 200
+
+# --- landings (generado por generar-landings.js) ---
+[[redirects]]
+  from = "/fontaneros"
+  to = "/fontaneros.html"
+  status = 200
+[[redirects]]
+  from = "/reformas"
+  to = "/reformas.html"
+  status = 200
+[[redirects]]
+  from = "/dentistas"
+  to = "/dentistas.html"
+  status = 200
+[[redirects]]
+  from = "/abogados"
+  to = "/abogados.html"
+  status = 200
+# --- fin landings ---

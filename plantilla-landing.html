@@ -1,10 +1,11 @@
 <!doctype html>
+<!-- PLANTILLA: no editar los .html generados; edita landings.json o esta plantilla y ejecuta `node generar-landings.js` -->
 <html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Más clientes de tu ciudad sin anuncios · loocaal.com</title>
-<meta name="description" content="Posicionamos tu negocio local en Google y en las IAs para que te lleguen clientes de tu ciudad sin depender de anuncios. Déjanos tus datos y te decimos qué haríamos.">
+<title>{{title}}</title>
+<meta name="description" content="{{description}}">
 <meta name="robots" content="noindex">
 <style>
 html, body { margin: 0; min-height: 100%; background: #f2ead9; color: #231d19; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
@@ -64,20 +65,20 @@ main { max-width: 1120px; margin: 0 auto; padding: 40px 20px 72px; display: grid
 </header>
 <main>
   <section class="pitch">
-    <h1>Más clientes de tu ciudad <span>sin pagar anuncios</span></h1>
-    <p class="lead">Posicionamos tu negocio de servicios en Google, Google Maps y en las IAs (ChatGPT, Gemini…) para que te encuentren cuando buscan lo que haces.</p>
+    <h1>{{h1}}</h1>
+    <p class="lead">{{lead}}</p>
     <ul>
-      <li>Web, ficha de Google Business y directorios locales optimizados con IA.</li>
-      <li>Palabras clave de tu ciudad y enlaces de calidad: subes posiciones mes a mes.</li>
-      <li>Sin permanencia y sin gastar un euro en publicidad.</li>
+      <li>{{bullet1}}</li>
+      <li>{{bullet2}}</li>
+      <li>{{bullet3}}</li>
     </ul>
-    <div class="video"><iframe src="/?embed" title="loocaal.com: cómo llevamos tu negocio de 0 a 7 cifras" loading="lazy"></iframe></div>
+    <div class="video"><iframe src="/?embed&amp;sector={{sector}}" title="{{videoTitle}}" loading="lazy"></iframe></div>
     <p class="nota">36 segundos que explican el método.</p>
   </section>
 
   <section id="formulario" aria-labelledby="form-titulo">
-    <h2 id="form-titulo">Cuéntanos sobre tu negocio</h2>
-    <p class="lead">Te decimos en 48 h qué haríamos para posicionarlo. Sin compromiso.</p>
+    <h2 id="form-titulo">{{formTitle}}</h2>
+    <p class="lead">{{formLead}}</p>
 <form name="negocios-locales" method="POST" action="/gracias.html" data-netlify="true" netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="negocios-locales">
       <p class="hp"><label>No rellenes este campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
@@ -88,7 +89,7 @@ main { max-width: 1120px; margin: 0 auto; padding: 40px 20px 72px; display: grid
       <input type="hidden" name="utm_term" value="">
       <input type="hidden" name="fbclid" value="">
       <input type="hidden" name="pagina_origen" value="">
-      <input type="hidden" name="landing" value="empieza">
+      <input type="hidden" name="landing" value="{{slug}}">
 
       <div class="campo">
         <label for="negocio">Nombre del negocio <span class="req">*</span></label>
@@ -116,16 +117,16 @@ main { max-width: 1120px; margin: 0 auto; padding: 40px 20px 72px; display: grid
         <label for="sector">Tipo de servicio <span class="req">*</span></label>
         <select id="sector" name="sector" required>
           <option value="">Elige uno…</option>
-          <option>Fontanería / electricidad / climatización</option>
-          <option>Reformas / construcción</option>
-          <option>Limpieza</option>
-          <option>Clínica dental / salud</option>
-          <option>Abogados / gestoría / asesoría</option>
-          <option>Estética / peluquería</option>
-          <option>Restauración / hostelería</option>
-          <option>Inmobiliaria</option>
-          <option>Taller / automoción</option>
-          <option>Otro</option>
+          <option{{selected:Fontanería / electricidad / climatización}}>Fontanería / electricidad / climatización</option>
+          <option{{selected:Reformas / construcción}}>Reformas / construcción</option>
+          <option{{selected:Limpieza}}>Limpieza</option>
+          <option{{selected:Clínica dental / salud}}>Clínica dental / salud</option>
+          <option{{selected:Abogados / gestoría / asesoría}}>Abogados / gestoría / asesoría</option>
+          <option{{selected:Estética / peluquería}}>Estética / peluquería</option>
+          <option{{selected:Restauración / hostelería}}>Restauración / hostelería</option>
+          <option{{selected:Inmobiliaria}}>Inmobiliaria</option>
+          <option{{selected:Taller / automoción}}>Taller / automoción</option>
+          <option{{selected:Otro}}>Otro</option>
         </select>
       </div>
 
@@ -164,7 +165,7 @@ main { max-width: 1120px; margin: 0 auto; padding: 40px 20px 72px; display: grid
 
       <div class="campo ancho">
         <label for="objetivo">¿Qué quieres conseguir? <span class="ayuda">(cuéntanos brevemente tu situación)</span></label>
-        <textarea id="objetivo" name="objetivo" placeholder="Ej.: quiero más llamadas de clientes de mi ciudad sin depender de anuncios."></textarea>
+        <textarea id="objetivo" name="objetivo" placeholder="{{objetivoPlaceholder}}"></textarea>
       </div>
 
       <div class="campo ancho">
