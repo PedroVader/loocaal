@@ -48,13 +48,9 @@ Los envíos llegan al mismo formulario de Netlify (`negocios-locales`) con el ca
 
 ## Meta Ads
 
-1. Pon el ID del píxel en `consent.js` (`META_PIXEL_ID`). Sin ID, el píxel no se carga.
+1. Píxel `3302342123486678` (conjunto de datos «loocaal.com»), configurado en `consent.js` (`META_PIXEL_ID`).
 2. Envía los anuncios a `https://loocaal.com/empieza?utm_source=meta&utm_medium=paid&utm_campaign=NOMBRE&utm_content=ANUNCIO` (o a una landing por sector: `/dentistas?utm_source=…`). Los valores llegan a Netlify Forms en cada lead.
 3. Evento de conversión: `Lead` (se dispara en `/gracias.html`).
-
-## Pendiente
-
-- ID del píxel de Meta en `consent.js`.
 
 ## Deploy
 

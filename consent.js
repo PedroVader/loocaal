@@ -2,7 +2,7 @@
    Para activar el píxel: pon tu ID en META_PIXEL_ID (Meta Business Suite → Orígenes de datos → Píxel). */
 (function () {
   'use strict';
-  var META_PIXEL_ID = '';           // ← p. ej. '123456789012345'. Vacío = el píxel no se carga nunca.
+  var META_PIXEL_ID = '3302342123486678'; // Vacío = el píxel no se carga nunca.
   var KEY = 'loocaal_consent';      // 'accepted' | 'rejected'
   var isPlayer = !/[?&](embed|render)\b/.test(location.search);
 
