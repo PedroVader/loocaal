@@ -13,6 +13,11 @@
   to = "/empieza.html"
   status = 200
 
+[[redirects]]
+  from = "/planes"
+  to = "/planes.html"
+  status = 200
+
 # --- landings (generado por generar-landings.js) ---
 [[redirects]]
   from = "/fontaneros"

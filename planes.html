@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planes y precios · loocaal.com</title>
+<meta name="description" content="Tres planes de posicionamiento local con proyecto y precio cerrados: Arranque, Crecimiento y Dominio. Tu negocio en Google, Google Maps y las IAs.">
+<style>
+html, body { margin: 0; min-height: 100%; background: #f2ead9; color: #231d19; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+header.top { background: #f8f3e8; border-bottom: 3px solid #231d19; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
+header.top a.marca { color: #231d19; text-decoration: none; font-weight: 700; font-size: 20px; }
+header.top a.marca span { color: #179c55; }
+header.top .tel { color: #0c6636; text-decoration: none; font-weight: 600; font-size: 15px; }
+main { max-width: 1120px; margin: 0 auto; padding: 48px 20px 72px; }
+.intro { max-width: 720px; margin: 0 auto 40px; text-align: center; }
+.intro h1 { font-size: clamp(30px, 4.4vw, 48px); line-height: 1.06; margin: 0 0 14px; letter-spacing: -.015em; }
+.intro h1 span { color: #179c55; }
+.intro p { color: #7b7167; font-size: 18px; margin: 0; }
+.planes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: stretch; }
+.plan { background: #f8f3e8; border: 3px solid #231d19; border-radius: 16px; padding: 26px 22px 24px; display: flex; flex-direction: column; position: relative; }
+.plan.destacado { background: #fff; box-shadow: 8px 8px 0 #179c55; }
+.plan .etiqueta { position: absolute; top: -15px; left: 22px; background: #179c55; color: #fff; font: 700 13px/1 system-ui, sans-serif; letter-spacing: .04em; padding: 8px 12px; border-radius: 999px; border: 2px solid #0c6636; }
+.plan h2 { font-size: 26px; margin: 0 0 4px; }
+.plan .para { color: #7b7167; font-size: 15px; margin: 0 0 18px; min-height: 45px; }
+.plan .precio { font-size: 40px; font-weight: 800; letter-spacing: -.02em; line-height: 1; margin: 0; }
+.plan .precio small { font-size: 15px; font-weight: 600; color: #7b7167; letter-spacing: 0; }
+.plan .plazo { color: #0c6636; font-weight: 600; font-size: 14px; margin: 8px 0 18px; }
+.plan ul { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 9px; flex: 1; }
+.plan li { padding-left: 26px; position: relative; font-size: 15px; }
+.plan li::before { content: "✓"; position: absolute; left: 0; top: 0; color: #179c55; font-weight: 700; }
+.plan li.todo { font-weight: 700; }
+.plan a.cta { display: block; text-align: center; font: 700 16px/1 system-ui, sans-serif; letter-spacing: .03em; text-decoration: none; border-radius: 999px; padding: 15px 20px; border: 2px solid #231d19; color: #231d19; background: #f2ead9; }
+.plan a.cta:hover { background: #e4d8c1; }
+.plan.destacado a.cta { background: #179c55; color: #fff; border-color: #0c6636; }
+.plan.destacado a.cta:hover { background: #0c6636; }
+.extra { margin: 36px auto 0; max-width: 760px; background: #f8f3e8; border: 2px dashed #231d19; border-radius: 14px; padding: 18px 22px; display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.extra p { margin: 0; }
+.extra strong { font-size: 18px; }
+.extra .precio-extra { font-weight: 800; font-size: 22px; white-space: nowrap; }
+.faq { max-width: 760px; margin: 48px auto 0; }
+.faq h2 { font-size: 26px; margin: 0 0 16px; }
+.faq details { border-top: 2px solid #231d19; padding: 14px 0; }
+.faq details:last-child { border-bottom: 2px solid #231d19; }
+.faq summary { font-weight: 700; cursor: pointer; }
+.faq details p { color: #4a413a; margin: 10px 0 0; }
+.final { text-align: center; margin: 48px 0 0; }
+.final a { display: inline-block; font: 700 18px/1 system-ui, sans-serif; letter-spacing: .04em; color: #fff; background: #179c55; border: 2px solid #0c6636; border-radius: 999px; padding: 18px 34px; text-decoration: none; }
+.final a:hover { background: #0c6636; }
+.final p { color: #7b7167; font-size: 14px; margin: 12px 0 0; }
+#pie { color: #7b7167; font: 13px/1.5 system-ui, sans-serif; text-align: center; padding: 20px; border-top: 1px solid #e4d8c1; }
+#pie a { color: #0c6636; }
+#cookie-banner { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 50; max-width: 560px; margin: 0 auto; background: #f8f3e8; color: #231d19; border: 2px solid #231d19; border-radius: 14px; padding: 14px 16px; font-size: 15px; line-height: 1.45; box-shadow: 0 6px 20px rgba(35,29,25,.18); }
+#cookie-banner p { margin: 0 0 10px; }
+#cookie-banner a { color: #0c6636; }
+#cookie-banner .acciones { display: flex; gap: 8px; justify-content: flex-end; }
+#cookie-banner button { font: 600 14px/1 system-ui, sans-serif; padding: 10px 16px; border-radius: 999px; cursor: pointer; background: #fff; color: #231d19; border: 2px solid #231d19; }
+#cookie-banner button.ok { background: #179c55; color: #fff; border-color: #0c6636; }
+@media (max-width: 900px) { .planes { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; gap: 30px; } .plan .para { min-height: 0; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="marca" href="/">loocaal<span>.com</span></a>
+  <a class="tel" href="tel:+34688323663">688 323 663</a>
+</header>
+<main>
+  <section class="intro">
+    <h1>Proyecto cerrado. <span>Precio cerrado.</span></h1>
+    <p>Sin cuotas sorpresa ni humo: sabes desde el primer día qué hacemos, cuánto cuesta y cuándo está listo. Para que te encuentren en Google, Google Maps y ChatGPT cuando alguien busca lo que haces en tu ciudad.</p>
+  </section>
+
+  <section class="planes">
+    <article class="plan">
+      <h2>Arranque</h2>
+      <p class="para">Autónomos y negocios con un servicio principal y una ciudad.</p>
+      <p class="precio">1.200 € <small>+ IVA</small></p>
+      <p class="plazo">Pago único · listo en 30 días</p>
+      <ul>
+        <li>Auditoría de tu ficha, tu web y tu competencia local</li>
+        <li>Ficha de Google Business optimizada al 100 %</li>
+        <li>Alta y corrección en 20–30 directorios de tu sector</li>
+        <li>Tu web actual arreglada para tu servicio y tu ciudad</li>
+        <li>Sistema para conseguir reseñas (enlace, QR y mensaje)</li>
+      </ul>
+      <a class="cta" href="/empieza#formulario">Quiero el Arranque</a>
+    </article>
+
+    <article class="plan destacado">
+      <span class="etiqueta">RECOMENDADO</span>
+      <h2>Crecimiento</h2>
+      <p class="para">Clínicas, despachos y empresas con varios servicios.</p>
+      <p class="precio">2.900 € <small>+ IVA</small></p>
+      <p class="plazo">Pago único · 3 meses de trabajo</p>
+      <ul>
+        <li class="todo">Todo lo del Arranque</li>
+        <li>8–10 páginas por servicio y ciudad</li>
+        <li>Enlaces locales: prensa, asociaciones y proveedores</li>
+        <li>Visibilidad en ChatGPT y otras IAs</li>
+        <li>Informe mensual de posiciones y visitas</li>
+        <li>Una llamada de seguimiento al mes</li>
+      </ul>
+      <a class="cta" href="/empieza#formulario">Quiero el Crecimiento</a>
+    </article>
+
+    <article class="plan">
+      <h2>Dominio</h2>
+      <p class="para">Negocios con varias sedes o que quieren cubrir toda su comarca.</p>
+      <p class="precio">4.900 € <small>+ IVA</small></p>
+      <p class="plazo">Pago único · 6 meses de trabajo</p>
+      <ul>
+        <li class="todo">Todo lo del Crecimiento</li>
+        <li>Web nueva pensada para convertir visitas en llamadas</li>
+        <li>20 o más páginas de servicio y zona</li>
+        <li>Campaña intensiva de reseñas</li>
+        <li>Seguimiento de llamadas: ves cuántos clientes te traemos</li>
+      </ul>
+      <a class="cta" href="/empieza#formulario">Quiero el Dominio</a>
+    </article>
+  </section>
+
+  <aside class="extra">
+    <p><strong>Mantenimiento opcional</strong><br>Al terminar tu plan: reseñas, ficha al día e informe mensual. Sin permanencia.</p>
+    <span class="precio-extra">desde 150 €/mes</span>
+  </aside>
+
+  <section class="faq">
+    <h2>Preguntas frecuentes</h2>
+    <details>
+      <summary>¿Por qué pago único y no una cuota mensual?</summary>
+      <p>Porque así sabes exactamente qué compras. Cerramos entregables y plazos por escrito antes de empezar, y no te atas a una cuota que se renueva sola.</p>
+    </details>
+    <details>
+      <summary>Ya tengo web (por ejemplo, del Kit Digital). ¿Tengo que tirarla?</summary>
+      <p>No. En Arranque y Crecimiento trabajamos sobre tu web actual. Solo proponemos una nueva (plan Dominio) si la que tienes no permite posicionarte.</p>
+    </details>
+    <details>
+      <summary>¿Qué es el análisis gratuito?</summary>
+      <p>Revisamos tu ficha de Google, tu web y a tu competencia en tu ciudad y, en 48 h laborables, te decimos qué haríamos y qué plan encaja contigo. Sin compromiso.</p>
+    </details>
+    <details>
+      <summary>¿Cuándo empiezo a notar resultados?</summary>
+      <p>Depende de tu sector y de tu ciudad. Por eso cada plan incluye informes: ves cómo evolucionan tus posiciones y tus contactos, sin tener que fiarte de nuestra palabra.</p>
+    </details>
+  </section>
+
+  <section class="final">
+    <a href="/empieza#formulario">PIDE TU ANÁLISIS GRATUITO</a>
+    <p>Te respondemos en 48 h laborables. Sin compromiso.</p>
+  </section>
+</main>
+<footer id="pie">© Fast Horizons SL · <a href="/aviso-legal.html">Aviso legal</a> · <a href="/privacidad.html">Privacidad</a> · <a href="/cookies.html">Cookies</a></footer>
+<script src="/consent.js" defer></script>
+</body>
+</html>

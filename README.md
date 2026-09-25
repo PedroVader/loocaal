@@ -8,6 +8,7 @@ Landing de loocaal.com: animación en canvas ("De 0 a 7 cifras con IA, 0 € en 
 - `empieza.html` (`/empieza`) — landing para tráfico de pago (Meta Ads): formulario arriba, animación incrustada al lado.
 - `fontaneros.html`, `reformas.html`, `dentistas.html`, `abogados.html` (`/fontaneros`, `/reformas`, `/dentistas`, `/abogados`) — landings por sector, **generadas**: no se editan a mano (ver «Landings por sector»).
 - `plantilla-landing.html` + `landings.json` + `generar-landings.js` — plantilla, textos y generador de las landings por sector.
+- `planes.html` (`/planes`) — planes y precios (Arranque 1.200 €, Crecimiento 2.900 €, Dominio 4.900 €, + IVA, pago único; mantenimiento desde 150 €/mes). Los CTA llevan a `/empieza#formulario`.
 - `gracias.html` — página de confirmación tras enviar el formulario. Dispara el evento `Lead` del píxel de Meta (si hay consentimiento).
 - `aviso-legal.html`, `privacidad.html`, `cookies.html` + `legal.css` — páginas legales (Fast Horizons SL).
 - `consent.js` — banner de cookies (estático), carga del píxel de Meta solo con consentimiento, y captura de UTM/fbclid en campos ocultos del formulario.
