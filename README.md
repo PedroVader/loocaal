@@ -51,7 +51,8 @@ Los envíos llegan al mismo formulario de Netlify (`negocios-locales`) con el ca
 1. Píxel `3302342123486678` (conjunto de datos «loocaal.com»), configurado en `consent.js` (`META_PIXEL_ID`).
 2. Envía los anuncios a `https://loocaal.com/empieza?utm_source=meta&utm_medium=paid&utm_campaign=NOMBRE&utm_content=ANUNCIO` (o a una landing por sector: `/dentistas?utm_source=…`). Los valores llegan a Netlify Forms en cada lead.
 3. Evento de conversión: `Lead` (se dispara en `/gracias.html`).
+4. Campaña «loocaal · Leads · Sectores · España»: un conjunto por sector (dentistas, abogados, fontaneros, reformas), 5 €/día cada uno, UTM en «Parámetros de URL» del anuncio (`utm_campaign=<sector>`). Imágenes: 1080×1080 generadas desde HTML.
 
 ## Deploy
 
-Push a `main` en GitHub → Netlify publica automáticamente (o `netlify deploy --prod --dir .`).
+Netlify **no** está conectado a GitHub: un push no publica nada. Para publicar: `netlify deploy --prod --dir .`
