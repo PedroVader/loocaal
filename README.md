@@ -16,6 +16,8 @@ Landing de loocaal.com: animación en canvas ("De 0 a 7 cifras con IA, 0 € en 
 
 ## Formulario
 
+`multistep.js` lo divide en 3 pasos (Tu negocio → Tu situación → Contacto) en todas las páginas. Solo reordena y oculta campos: Netlify recibe los mismos. Sin JS se ve completo.
+
 Usa **Netlify Forms** (`data-netlify="true"`, nombre `negocios-locales`). Los envíos se ven en Netlify → Site → Forms. Desde ahí se pueden activar notificaciones por email, Slack o webhook.
 
 Campos: negocio, contacto, email, teléfono, ciudad, sector, web, facturación, ficha de Google Business, anuncios actuales, objetivo y consentimiento de privacidad. Protección anti-spam con honeypot (`bot-field`).
