@@ -163,6 +163,16 @@ main { max-width: 1120px; margin: 0 auto; padding: 40px 20px 72px; display: grid
         </div>
       </fieldset>
 
+      <fieldset class="ancho">
+        <legend>¿Qué inversión tienes prevista para conseguir más clientes? <span class="req">*</span></legend>
+        <div class="opciones">
+          <label><input type="radio" name="inversion" value="Menos de 1.000 €" required> Menos de 1.000 €</label>
+          <label><input type="radio" name="inversion" value="1.000 – 3.000 €"> 1.000 – 3.000 €</label>
+          <label><input type="radio" name="inversion" value="Más de 3.000 €"> Más de 3.000 €</label>
+          <label><input type="radio" name="inversion" value="Aún no lo sé"> Aún no lo sé</label>
+        </div>
+      </fieldset>
+
       <div class="campo ancho">
         <label for="objetivo">¿Qué quieres conseguir? <span class="ayuda">(cuéntanos brevemente tu situación)</span></label>
         <textarea id="objetivo" name="objetivo" placeholder="{{objetivoPlaceholder}}"></textarea>

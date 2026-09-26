@@ -5,7 +5,7 @@
   'use strict';
   var PASOS = [
     { titulo: 'Tu negocio', campos: ['sector', 'ciudad', 'negocio'] },
-    { titulo: 'Tu situación', campos: ['web', 'facturacion', 'google_business', 'anuncios', 'objetivo'] },
+    { titulo: 'Tu situación', campos: ['web', 'facturacion', 'google_business', 'anuncios', 'inversion', 'objetivo'] },
     { titulo: '¿Dónde te contactamos?', campos: ['contacto', 'email', 'telefono', 'privacidad'] }
   ];
 
