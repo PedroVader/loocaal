@@ -22,6 +22,10 @@ Usa **Netlify Forms** (`data-netlify="true"`, nombre `negocios-locales`). Los en
 
 Campos: negocio, contacto, email, teléfono, ciudad, sector, web, facturación, ficha de Google Business, anuncios actuales, objetivo y consentimiento de privacidad. Protección anti-spam con honeypot (`bot-field`).
 
+## Embudo del formulario
+
+`multistep.js` envía eventos anónimos (visita, inicio, paso2, paso3, envio · landing · utm_content) a `/api/embudo` (`netlify/functions/embudo.mjs`, guarda en Netlify Blobs, sin cookies ni datos personales). Informe: `node embudo-informe.mjs [AAAA-MM-DD]`.
+
 ## Textos de la animación
 
 Editables en `index.html`, bloque `CONFIG` (negocio, dominio, cifras, palabras clave, CTA…).

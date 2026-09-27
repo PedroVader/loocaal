@@ -25,6 +25,19 @@
     '.ms-nav button[type=submit]{flex:1;grid-column:auto;margin:0}' +
     '@media (max-width:420px){.ms-nav button{font-size:15px;padding:15px 16px}.ms-nav .ms-atras{padding:15px 14px}}';
 
+  // Embudo anónimo (sin cookies ni datos personales): cuenta visitas, inicio, pasos y envío por landing.
+  var enviados = {};
+  function medir(form, paso) {
+    if (enviados[paso]) return; enviados[paso] = true;
+    try {
+      var landing = (form.elements.landing && form.elements.landing.value) || 'index';
+      var utm = new URLSearchParams(location.search).get('utm_content') || '';
+      var cuerpo = JSON.stringify({ paso: paso, landing: landing, utm: utm.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 20) });
+      if (navigator.sendBeacon) navigator.sendBeacon('/api/embudo', new Blob([cuerpo], { type: 'text/plain' }));
+      else fetch('/api/embudo', { method: 'POST', body: cuerpo, keepalive: true });
+    } catch (e) {}
+  }
+
   function init(form) {
     var contenedor = function (nombre) {
       var el = form.elements[nombre];
@@ -66,6 +79,7 @@
       pasos.forEach(function (p, k) {
         p.nodos.forEach(function (n) { n.classList.toggle('ms-oculto', k !== i); });
       });
+      if (i > 0) medir(form, 'paso' + (i + 1));
       var ultimo = i === pasos.length - 1;
       atras.classList.toggle('ms-oculto', i === 0);
       sig.classList.toggle('ms-oculto', ultimo);
@@ -110,6 +124,16 @@
     });
 
     mostrar(0, false);
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (ents) {
+        if (ents.some(function (en) { return en.isIntersecting; })) { medir(form, 'visita'); io.disconnect(); }
+      }, { threshold: 0.3 });
+      io.observe(form);
+    } else medir(form, 'visita');
+    form.addEventListener('focusin', function () { medir(form, 'inicio'); });
+    form.addEventListener('change', function () { medir(form, 'inicio'); });
+    form.addEventListener('submit', function (e) { if (!e.defaultPrevented) medir(form, 'envio'); });
   }
 
   function arrancar() {
