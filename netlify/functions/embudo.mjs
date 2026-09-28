@@ -3,7 +3,7 @@
 // Leer: node embudo-informe.mjs
 import { getStore } from '@netlify/blobs';
 
-const PASOS = new Set(['visita', 'inicio', 'paso2', 'paso3', 'envio']);
+const PASOS = new Set(['visita', 'inicio', 'paso2', 'paso3', 'envio', 'whatsapp']);
 const LANDINGS = new Set(['index', 'empieza', 'dentistas', 'abogados', 'fontaneros', 'reformas']);
 
 export default async (req) => {

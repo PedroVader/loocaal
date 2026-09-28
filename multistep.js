@@ -134,6 +134,9 @@
     form.addEventListener('focusin', function () { medir(form, 'inicio'); });
     form.addEventListener('change', function () { medir(form, 'inicio'); });
     form.addEventListener('submit', function (e) { if (!e.defaultPrevented) medir(form, 'envio'); });
+    document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
+      a.addEventListener('click', function () { medir(form, 'whatsapp'); });
+    });
   }
 
   function arrancar() {
