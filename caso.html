@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/img/icono.svg" type="image/svg+xml">
+<link rel="icon" href="/img/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<title>Caso real: Limpieza.ai · loocaal.com</title>
+<meta name="description" content="Web nueva en marzo y hoy casi 20.000 € al mes con clientes que llegan desde Google, sin anuncios. Los datos reales de Limpieza.ai, del mismo grupo que loocaal.">
+<style>
+html, body { margin: 0; min-height: 100%; background: #f2ead9; color: #231d19; font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+header.top { background: #f8f3e8; border-bottom: 3px solid #231d19; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
+header.top .tel { color: #0c6636; text-decoration: none; font-weight: 600; font-size: 15px; }
+main { max-width: 1040px; margin: 0 auto; padding: 48px 20px 72px; display: grid; gap: 64px; }
+.eyebrow { display: inline-block; font: 700 13px/1 system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: #0c6636; background: #c4e6c3; border: 2px solid #0c6636; border-radius: 999px; padding: 7px 12px; }
+.hero { display: grid; gap: 18px; max-width: 780px; }
+.hero h1 { font-size: clamp(32px, 5vw, 56px); line-height: 1.04; margin: 0; letter-spacing: -.02em; text-wrap: balance; }
+.hero h1 span { color: #179c55; }
+.hero p { font-size: 19px; color: #4a413a; margin: 0; max-width: 64ch; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+a.cta { display: inline-block; font: 700 17px/1 system-ui, sans-serif; letter-spacing: .03em; color: #fff; background: #179c55; border: 2px solid #0c6636; border-radius: 999px; padding: 17px 30px; text-decoration: none; }
+a.cta:hover { background: #0c6636; }
+a.cta.sec { background: #f8f3e8; color: #231d19; border-color: #231d19; }
+a.cta.sec:hover { background: #e4d8c1; }
+.nota { color: #7b7167; font-size: 14px; margin: 0; }
+
+.cifras { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.cifra { background: #f8f3e8; border: 3px solid #231d19; border-radius: 16px; padding: 20px 18px; }
+.cifra.destacada { background: #fff; box-shadow: 8px 8px 0 #179c55; }
+.cifra b { display: block; font-size: clamp(30px, 3.6vw, 42px); line-height: 1; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.cifra span { display: block; margin-top: 8px; font-size: 15px; color: #4a413a; }
+.cifra small { display: block; margin-top: 6px; font-size: 13px; color: #7b7167; }
+
+section.bloque { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 32px; align-items: start; }
+section.bloque.inv { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+section.bloque.inv .texto { order: 2; }
+.texto h2 { font-size: clamp(24px, 3vw, 32px); line-height: 1.12; margin: 8px 0 12px; letter-spacing: -.01em; text-wrap: balance; }
+.texto p { margin: 0 0 12px; color: #4a413a; max-width: 60ch; }
+.paso { font: 700 13px/1 system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: #7b7167; }
+figure { margin: 0; display: grid; gap: 8px; }
+figure img { width: 100%; height: auto; display: block; border: 3px solid #231d19; border-radius: 12px; background: #fff; }
+figcaption { font-size: 13px; color: #7b7167; }
+
+.barras { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; align-items: end; height: 200px; padding: 0 4px; border-bottom: 2px solid #231d19; }
+.barra { background: #179c55; border: 2px solid #0c6636; border-bottom: 0; border-radius: 8px 8px 0 0; position: relative; }
+.barra.max { background: #0c6636; }
+.barra b { position: absolute; top: -26px; left: 0; right: 0; text-align: center; font-size: 15px; font-variant-numeric: tabular-nums; }
+.meses { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; padding: 6px 4px 0; font-size: 13px; color: #7b7167; text-align: center; }
+.grafica { background: #f8f3e8; border: 3px solid #231d19; border-radius: 16px; padding: 40px 18px 16px; display: grid; gap: 4px; }
+.grafica h3 { margin: -24px 0 18px; font-size: 16px; }
+
+.cobros { background: #141210; border: 3px solid #231d19; border-radius: 12px; padding: 10px 0; display: grid; gap: 2px; overflow-x: auto; }
+.cobros img { display: block; height: auto; width: 100%; min-width: 760px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 12px; }
+.chip { font-size: 14px; background: #f8f3e8; border: 2px solid #231d19; border-radius: 999px; padding: 4px 12px; }
+
+.metodo { display: grid; gap: 20px; }
+.metodo h2 { font-size: clamp(24px, 3vw, 32px); margin: 0; }
+.pasos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.pasos article { background: #f8f3e8; border: 3px solid #231d19; border-radius: 16px; padding: 20px; }
+.pasos h3 { margin: 6px 0 8px; font-size: 19px; }
+.pasos p { margin: 0; color: #4a413a; font-size: 15px; }
+
+.honesto { background: #f8f3e8; border: 2px dashed #231d19; border-radius: 14px; padding: 20px 22px; max-width: 760px; }
+.honesto h2 { font-size: 20px; margin: 0 0 8px; }
+.honesto p { margin: 0; color: #4a413a; }
+.final { text-align: center; display: grid; gap: 12px; justify-items: center; }
+.final h2 { font-size: clamp(26px, 3.4vw, 38px); line-height: 1.1; margin: 0; text-wrap: balance; max-width: 22ch; }
+#pie { color: #7b7167; font: 13px/1.5 system-ui, sans-serif; text-align: center; padding: 20px; border-top: 1px solid #e4d8c1; }
+#pie a { color: #0c6636; }
+#cookie-banner { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 50; max-width: 560px; margin: 0 auto; background: #f8f3e8; color: #231d19; border: 2px solid #231d19; border-radius: 14px; padding: 14px 16px; font-size: 15px; line-height: 1.45; box-shadow: 0 6px 20px rgba(35,29,25,.18); }
+#cookie-banner p { margin: 0 0 10px; }
+#cookie-banner a { color: #0c6636; }
+#cookie-banner .acciones { display: flex; gap: 8px; justify-content: flex-end; }
+#cookie-banner button { font: 600 14px/1 system-ui, sans-serif; padding: 10px 16px; border-radius: 999px; cursor: pointer; background: #fff; color: #231d19; border: 2px solid #231d19; }
+#cookie-banner button.ok { background: #179c55; color: #fff; border-color: #0c6636; }
+a:focus-visible { outline: 3px solid #179c55; outline-offset: 3px; }
+@media (max-width: 900px) {
+  .cifras { grid-template-columns: repeat(2, 1fr); }
+  section.bloque, section.bloque.inv { grid-template-columns: 1fr; }
+  section.bloque.inv .texto { order: 0; }
+  .pasos { grid-template-columns: 1fr; }
+}
+@media (max-width: 420px) { .cifras { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="marca" href="/"><img src="/img/logo-loocaal-web.png" alt="loocaal.com" width="161" height="24" style="display:block;height:24px;width:auto"></a>
+  <a class="tel" href="tel:+34688323663">688 323 663</a>
+</header>
+<main>
+  <section class="hero">
+    <span class="eyebrow">Caso real · Limpieza.ai</span>
+    <h1>Web nueva en marzo. Hoy, casi <span>20.000 € al mes</span> con clientes que llegan desde Google.</h1>
+    <p>Limpieza.ai es una empresa de limpieza del mismo grupo que loocaal. No pagamos anuncios: los clientes nos encuentran en Google y en Google Maps. Aquí tienes los datos reales, sacados de Google y del banco.</p>
+    <div class="cta-row">
+      <a class="cta" href="/empieza#formulario">QUIERO LO MISMO PARA MI NEGOCIO</a>
+      <a class="cta sec" href="/planes">Ver planes</a>
+    </div>
+    <p class="nota">Planes desde 690 € + IVA · Diagnóstico sin compromiso</p>
+  </section>
+
+  <section class="cifras" aria-label="Resultados de Limpieza.ai">
+    <div class="cifra destacada"><b>~20.000 €</b><span>facturados en septiembre</span><small>Sin gastar en anuncios</small></div>
+    <div class="cifra"><b>272</b><span>llamadas desde la ficha de Google</span><small>Mayo – septiembre 2026</small></div>
+    <div class="cifra"><b>6.520</b><span>visitas desde Google a la web</span><small>Desde que se estrenó</small></div>
+    <div class="cifra"><b>680.000</b><span>veces que salimos en Google</span><small>Impresiones en búsquedas</small></div>
+  </section>
+
+  <section class="bloque">
+    <div class="texto">
+      <span class="paso">Paso 1 · La web</span>
+      <h2>De cero visitas a 60–80 al día desde Google</h2>
+      <p>La web se estrenó en marzo, desde cero. Durante las primeras semanas casi nadie llegaba. Mes a mes fue apareciendo en más búsquedas, y hoy recibe entre 60 y 80 visitas diarias desde Google.</p>
+      <p>Las bajadas que se ven cada semana son los fines de semana: las empresas buscan proveedor de lunes a viernes.</p>
+    </div>
+    <figure>
+      <img src="/img/caso/search-console.webp" width="1600" height="791" alt="Gráfica de Google Search Console: los clics diarios suben de casi cero en febrero a entre 60 y 80 en septiembre de 2026" loading="lazy">
+      <figcaption>Google Search Console de Limpieza.ai. Clics (azul) e impresiones (morado) por día.</figcaption>
+    </figure>
+  </section>
+
+  <section class="bloque inv">
+    <div class="texto">
+      <span class="paso">Paso 2 · La ficha de Google</span>
+      <h2>272 clientes nos llamaron directamente desde Google Maps</h2>
+      <p>Cuando alguien busca una empresa de limpieza, lo primero que ve es el mapa. Con la ficha bien trabajada, las llamadas pasaron de unas 24 en mayo a más de 60 al mes.</p>
+      <p>En total, más de 1.000 interacciones con la ficha en cinco meses: llamadas, mensajes, visitas a la web y peticiones de ruta.</p>
+    </div>
+    <div class="grafica" role="img" aria-label="Llamadas mensuales desde la ficha de Google: mayo 24, junio 52, julio 80, agosto 54, septiembre 62">
+      <h3>Llamadas desde la ficha, por mes (aprox.)</h3>
+      <div class="barras">
+        <div class="barra" style="height:30%"><b>24</b></div>
+        <div class="barra" style="height:65%"><b>52</b></div>
+        <div class="barra max" style="height:100%"><b>80</b></div>
+        <div class="barra" style="height:67.5%"><b>54</b></div>
+        <div class="barra" style="height:77.5%"><b>62</b></div>
+      </div>
+      <div class="meses"><span>may</span><span>jun</span><span>jul</span><span>ago</span><span>sep</span></div>
+    </div>
+  </section>
+
+  <section class="bloque">
+    <div class="texto">
+      <span class="paso">Paso 3 · Los clientes</span>
+      <h2>Clientes que pagan, y que repiten</h2>
+      <p>Las visitas y las llamadas solo importan si acaban en facturas. Estos son cobros reales del banco de Limpieza.ai. Hemos ocultado los nombres de los clientes por privacidad.</p>
+      <div class="chips"><span class="chip">Fundaciones y colegios</span><span class="chip">Empresas</span><span class="chip">Particulares</span><span class="chip">Clientes recurrentes</span></div>
+      <p>Hay clientes que pagan varios servicios a la vez y otros que repiten cada mes. Una sola búsqueda en Google puede acabar siendo un contrato de miles de euros.</p>
+    </div>
+    <figure>
+      <div class="cobros">
+        <img src="/img/caso/cobro-fundacion.webp" width="1306" height="115" alt="Tres cobros de una fundación el 29 de septiembre de 2026: 1.389,90 €, 736,50 € y 1.002,70 €" loading="lazy">
+        <img src="/img/caso/cobro-empresa-recurrente.webp" width="1600" height="98" alt="Una empresa que paga cada mes: 1.105,34 € en agosto y 1.333,42 € en septiembre de 2026" loading="lazy">
+        <img src="/img/caso/cobro-empresa-espacios.webp" width="1304" height="37" alt="Cobro de 4.686,38 € de una empresa el 31 de julio de 2026" loading="lazy">
+        <img src="/img/caso/cobro-particular-2.webp" width="1309" height="40" alt="Cobro de 1.087,40 € el 22 de julio de 2026" loading="lazy">
+      </div>
+      <figcaption>Capturas del banco de Limpieza.ai, con los nombres de los clientes ocultos.</figcaption>
+    </figure>
+  </section>
+
+  <section class="metodo">
+    <h2>Lo que hicimos (y lo que hacemos con tu negocio)</h2>
+    <div class="pasos">
+      <article><span class="paso">Google Maps</span><h3>Ficha de Google al 100 %</h3><p>Categorías, zonas de servicio, fotos reales, reseñas constantes y publicaciones. Es lo que hace sonar el teléfono.</p></article>
+      <article><span class="paso">Web</span><h3>Una página por servicio y zona</h3><p>Web rápida, pensada para el móvil, que dice claramente qué haces y dónde. Así Google sabe cuándo enseñarte.</p></article>
+      <article><span class="paso">IA</span><h3>Que ChatGPT te recomiende</h3><p>Cada vez más gente pregunta a ChatGPT y a los buscadores con IA. Preparamos tu negocio para que te conozcan y te nombren.</p></article>
+    </div>
+  </section>
+
+  <aside class="honesto">
+    <h2>Lo que no te vamos a prometer</h2>
+    <p>No te garantizamos facturar 20.000 € al mes: cada negocio, sector y ciudad es distinto. Lo que sí hacemos es aplicar el mismo método y enseñarte cada mes los datos (visitas, llamadas y posiciones) para que lo compruebes tú, sin fiarte de nuestra palabra.</p>
+  </aside>
+
+  <section class="final">
+    <h2>¿Quieres saber qué pasaría con tu negocio?</h2>
+    <a class="cta" href="/empieza#formulario">PIDE TU DIAGNÓSTICO</a>
+    <p class="nota">Revisamos tu ficha, tu web y a tu competencia, y te decimos qué haríamos. Planes desde 690 € + IVA.</p>
+  </section>
+</main>
+<footer id="pie">© Fast Horizons SL · <a href="/aviso-legal.html">Aviso legal</a> · <a href="/privacidad.html">Privacidad</a> · <a href="/cookies.html">Cookies</a></footer>
+<script src="/consent.js" defer></script>
+</body>
+</html>
