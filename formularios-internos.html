@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<title>Formularios internos</title>
+</head>
+<body>
+<!-- Formulario oculto para que Netlify Forms registre «leads-meta» al desplegar.
+     Lo rellena netlify/functions/leads-meta.mjs con cada lead de Meta; no lo usa ningún visitante. -->
+<form name="leads-meta" method="POST" data-netlify="true" hidden>
+  <input name="nombre">
+  <input name="telefono">
+  <input name="whatsapp">
+  <input name="email">
+  <input name="sector">
+  <input name="web">
+  <input name="inversion">
+  <input name="municipio">
+  <input name="valoracion">
+  <input name="anuncio">
+  <input name="fecha">
+</form>
+</body>
+</html>
